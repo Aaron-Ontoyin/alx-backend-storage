@@ -1,20 +1,15 @@
--- Old School band
+-- Old school band
+-- This script lists all bands with 'Glam rock' as their main style,
+-- ranked by their longevity.
 
-SOURCE metal_bands.sql;
-
-CREATE TEMPORARY TABLE glam_rock_bands AS
-SELECT band_name,
-       CAST(SUBSTRING_INDEX(lifespan, '-', 1) AS UNSIGNED) AS start_year,
-       CAST(SUBSTRING_INDEX(lifespan, '-', -1) AS UNSIGNED) AS end_year
+-- Getting bands with 'Glam rock' as their main style and ordering
+-- by their lifespan in descending order.
+SELECT
+    band_name,
+    CASE
+        WHEN split IS NULL THEN 2022 - formed
+        ELSE split - formed
+    END AS lifespan
 FROM metal_bands
-WHERE main_style = 'Glam rock';
-
-UPDATE glam_rock_bands
-SET end_year = IFNULL(end_year, 2022);
-
-UPDATE glam_rock_bands
-SET lifespan = end_year - start_year;
-
-SELECT band_name, lifespan
-FROM glam_rock_bands
+WHERE style LIKE '%Glam rock%'
 ORDER BY lifespan DESC;
