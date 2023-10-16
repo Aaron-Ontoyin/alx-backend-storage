@@ -3,7 +3,7 @@
 
 SOURCE metal_bands.sql;
 
-SELECT 
+SELECT
     origin,
     SUM(fans) AS nb_fans
 FROM 
