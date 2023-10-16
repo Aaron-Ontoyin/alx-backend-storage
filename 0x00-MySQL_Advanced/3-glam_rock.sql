@@ -1,5 +1,4 @@
--- Best band ever!
-
+-- Old School band
 
 SOURCE metal_bands.sql;
 
@@ -19,8 +18,3 @@ SET lifespan = end_year - start_year;
 SELECT band_name, lifespan
 FROM glam_rock_bands
 ORDER BY lifespan DESC;
-
-SELECT origin, COUNT(DISTINCT nb_fans) AS total_fans
-FROM metal_bands
-GROUP BY origin
-ORDER BY total_fans DESC;
