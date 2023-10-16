@@ -2,6 +2,9 @@
 
 -- This script creates a trigger to reset the 'valid_email' attribute in the 'users' table
 -- only when the 'email' attribute has been changed.
+
+DELIMITER //
+
 CREATE TRIGGER email_update
 BEFORE UPDATE ON users
 FOR EACH ROW
@@ -10,3 +13,6 @@ BEGIN
         SET NEW.valid_email = 0;
     END IF;
 END;
+//
+
+DELIMITER;
