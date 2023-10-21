@@ -1,0 +1,6 @@
+// Script to list documents in the 'school' collection with name "Holberton school"
+cursor = db.school.find({ name: "Holberton school" });
+
+while(cursor.hasNext()) {
+   printjson(cursor.next());
+}

@@ -1,0 +1,6 @@
+// Script to list all documents in the 'school' collection
+cursor = db.school.find();
+
+while(cursor.hasNext()) {
+   printjson(cursor.next());
+}
